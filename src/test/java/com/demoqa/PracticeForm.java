@@ -16,15 +16,12 @@ public class PracticeForm extends TestBase {
     @Test
     void succesfulFullFormTest() {
         open("/automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
         $("#firstName").setValue("Seva");
         $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("aaa@a.com");
         $(byText("Male")).click();
         $("#userNumber").setValue("7986957850");
         $("#dateOfBirthInput").sendKeys(CONTROL + "A");
-        //$("#dateOfBirthInput").click();
         $("#dateOfBirthInput").sendKeys("11.11.1991");
         $("#dateOfBirthInput").pressEnter();
         $("#subjectsInput").setValue("Arts");
