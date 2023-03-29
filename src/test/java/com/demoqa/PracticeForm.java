@@ -16,6 +16,8 @@ public class PracticeForm extends TestBase {
     @Test
     void succesfulFullFormTest() {
         open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         $("#firstName").setValue("Seva");
         $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("aaa@a.com");
