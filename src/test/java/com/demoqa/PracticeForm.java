@@ -27,7 +27,7 @@ public class PracticeForm extends TestBase {
         //$("#dateOfBirthInput").click();
         $("#dateOfBirthInput").sendKeys("11.11.1991");
         $("#dateOfBirthInput").pressEnter();
-        $("#subjectsInput").setValue("Geography");
+        $("#subjectsInput").setValue("Arts");
         $("#subjectsInput").pressEnter();
         $(byText("Sports")).click();
         $(byText("Reading")).click();
@@ -40,7 +40,7 @@ public class PracticeForm extends TestBase {
         $(byText("Karnal")).click();
         $("#submit").click();
         $(".table").shouldHave(text("Seva Ivanov"), text("aaa@a.com"), text("Male"),
-                text("7986957850"), text("11 October,1991"), text("Geography"), text("Sports, Reading, Music"),
+                text("7986957850"), text("11 November,1991"), text("Arts"), text("Sports, Reading, Music"),
                 text("1.jpg"), text("Kazan"), text("Haryana Karnal"));
 
 
