@@ -1,18 +1,11 @@
 package com.demoqa;
-
-
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.Keys.CONTROL;
-
 public class PracticeForm extends TestBase {
-
-
     @Test
     void succesfulFullFormTest() {
         open("/automation-practice-form");
@@ -38,9 +31,8 @@ public class PracticeForm extends TestBase {
         $("#city").click();
         $(byText("Karnal")).click();
         $("#submit").click();
-        $(".table").shouldHave(text("Seva Ivanov"), text("aaa@a.com"), text("Male"),
-                text("7986957850"), text("11 November,1991"), text("Arts"), text("Sports, Reading, Music"),
-                text("1.jpg"), text("Kazan"), text("Haryana Karnal"));
+        $(".table").shouldHave(text("Seva Ivanov"), text("aaa@a.com"), text("Male"), text("7986957850"),
+                text("11 November,1991"), text("Arts"), text("Sports, Reading, Music"), text("1.jpg"), text("Kazan"), text("Haryana Karnal"));
 
 
     }
