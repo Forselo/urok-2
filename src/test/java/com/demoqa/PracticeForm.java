@@ -2,7 +2,6 @@ package com.demoqa;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.Keys.CONTROL;
 public class PracticeForm extends TestBase {
@@ -27,19 +26,13 @@ public class PracticeForm extends TestBase {
         $("#uploadPicture").uploadFile(new File("src/test/resources/images/1.jpg"));
         $("#currentAddress").setValue("Kazan");
         $("#state").click();
-        $(byText("Haryana")).click();
+        $("#react-select-3-option-2").click();
         $("#city").click();
-        $(byText("Karnal")).click();
+        $("#react-select-4-option-0").click();
         $("#submit").click();
         $(".table").shouldHave(text("Seva Ivanov"), text("aaa@a.com"), text("Male"), text("7986957850"),
                 text("11 November,1991"), text("Arts"), text("Sports, Reading, Music"), text("1.jpg"), text("Kazan"), text("Haryana Karnal"));
 
-
-
-
-
     }
-
-
 
 }
