@@ -1,4 +1,4 @@
-package com.demoqa;
+package com.demoqa.tests;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import static com.codeborne.selenide.Condition.text;
