@@ -20,14 +20,11 @@ public class PracticeFormPageObjects extends TestBase {
                         .setFirstName("Alex")
                         .setLastName("Ivanov")
                         .setEmailInput("aaa@a.com")
-                        .setGender("Other");
-        
+                        .setGender("Other")
+                        .setNumber("7986957850")
+                        .setBirthDate("30", "July", "2008");
 
-
-        $("#userNumber").setValue("7986957850");
-        $("#dateOfBirthInput").sendKeys(CONTROL + "A");
-        $("#dateOfBirthInput").sendKeys("11.11.1991");
-        $("#dateOfBirthInput").pressEnter();
+        $("#dateOfBirthInput").click();
         $("#subjectsInput").setValue("Arts");
         $("#subjectsInput").pressEnter();
         $("#hobbies-checkbox-1").parent().click();
