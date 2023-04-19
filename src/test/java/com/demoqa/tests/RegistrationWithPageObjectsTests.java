@@ -2,45 +2,38 @@ package com.demoqa.tests;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-
 public class RegistrationWithPageObjectsTests extends TestBase {
 
     @Test
     void successfulRegistrationTest() {
         registrationPage.openPage()
-                .setFirstName("Alex")
-                .setLastName("Egorov")
-                .setUserEmail("alex@egorov.com")
-                .setGender("Other")
+                .removeFooter()
+                .setFirstName("Seva")
+                .setLastName("Petrov")
+                .setUserEmail("fors333@a.ru")
+                .setGender("Male")
                 .setNumber("1234567890")
-                .setBirthDate("30", "July", "2008")
+                .setBirthDate("23", "April", "1989")
                 .setSubjects("Math")
                 .setHobby("Sports")
-                .uploadPicture("1.jpg");
+                .uploadPicture("1.jpg")
+                .setCurrentAddress("Kazan")
+                .setState("Haryana")
+                .setCity("Panipat")
+                .clickSubmit();
 
-
-
-
-       // $("#uploadPicture").uploadFile(new File("src/test/resources/images/1.jpg"));
-        $("#currentAddress").setValue("Some address 1");
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText("Delhi")).click();
-        $("#submit").click();
 
         registrationPage.verifyRegistrationResultsModalAppears()
-                .verifyResult("Full name", "Alex Egorov")
-                .verifyResult("Email", "alex@egorov.com")
-                .verifyResult("Phone", "1234567890")
-                .verifyResult("Date of Birth", "16 October,2000")
+                .verifyResult("Student Name", "Seva Petrov")
+                .verifyResult("Student Email", "fors333@a.ru")
+                .verifyResult("Gender", "Male")
+                .verifyResult("Mobile", "1234567890")
+                .verifyResult("Date of Birth", "23 April,1989")
                 .verifyResult("Subjects", "Math")
                 .verifyResult("Hobbies", "Sports")
-                .verifyResult("Picture", "misterPesel.jpg");
+                .verifyResult("Picture", "1.jpg")
+                .verifyResult("Address", "Kazan")
+                .verifyResult("State and City", "Haryana Panipat");
 
     }
 }

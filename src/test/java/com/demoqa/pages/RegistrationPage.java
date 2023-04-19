@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.demoqa.pages.components.CalendarComponent;
 import com.demoqa.pages.components.ResultsModal;
 
-import static com.codeborne.selenide.Condition.appear;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -17,7 +17,7 @@ public class RegistrationPage {
    CalendarComponent calendarComponent = new CalendarComponent();
    ResultsModal resultsModal = new ResultsModal();
 
-   SelenideElement formHeaderText = $(".practice-form-wrapper"),
+   SelenideElement formHeader = $(".practice-form-wrapper"),
            firstNameInput = $("#firstName"),
            lastNameInput = $("#lastName"),
            userEmailInput = $("#userEmail"),
@@ -26,7 +26,12 @@ public class RegistrationPage {
            dateOfBirthInput = $("#dateOfBirthInput"),
            subjectsInput = $("#subjectsInput"),
            hobbies = $("#hobbiesWrapper"),
-           pictureInput = $("#uploadPicture");
+           pictureInput = $("#uploadPicture"),
+           currentAddressInput = $("#currentAddress"),
+           stateInput = $("#state"),
+           cityInput = $("#city"),
+           stateAndCity = $("#stateCity-wrapper"),
+           submitButton = $("#submit");
 
 
 
@@ -34,9 +39,14 @@ public class RegistrationPage {
    public RegistrationPage openPage() {
       open("/automation-practice-form");
 
-      formHeaderText.shouldHave(text("Student Registration Form"));
-      executeJavaScript("$('#fixedban').remove()");
+      formHeader.shouldHave(text("Student Registration Form"));
+
+      return this;
+   }
+
+   public RegistrationPage removeFooter(){
       executeJavaScript("$('footer').remove()");
+      executeJavaScript("$('#fixedban').remove()");
 
       return this;
    }
@@ -46,12 +56,7 @@ public class RegistrationPage {
 
       return this;
    }
-//
-//    public RegistrationPage clearFirstName() {
-//        firstNameInput.clear();
-//
-//        return this;
-//    }
+
 
    public RegistrationPage setLastName(String value) {
       lastNameInput.setValue(value);
@@ -84,11 +89,6 @@ public class RegistrationPage {
       return this;
    }
 
-   public RegistrationPage verifyRegistrationResultsModalAppears() {
-      resultsModal.verifyModalAppears();
-
-      return this;
-   }
    public RegistrationPage setSubjects(String value) {
       subjectsInput.setValue(value).pressEnter();
 
@@ -101,13 +101,44 @@ public class RegistrationPage {
       return this;
    }
    public RegistrationPage uploadPicture(String value) {
-      pictureInput.$(byText(value)).click();
+      pictureInput.uploadFromClasspath(value);
 
       return this;
    }
+   public RegistrationPage setCurrentAddress(String value) {
+      currentAddressInput.setValue(value);
+
+      return this;
+   }
+   public RegistrationPage setState(String value) {
+      stateInput.click();
+      stateAndCity.$(byText(value)).click();
+
+      return this;
+   }
+
+   public RegistrationPage setCity(String value) {
+      cityInput.click();
+      stateAndCity.$(byText(value)).click();
+
+      return this;
+   }
+
+   public void clickSubmit() {
+      submitButton.click();
+   }
+
+   public RegistrationPage verifyRegistrationResultsModalAppears(){
+      resultsModal.verifyModalAppears();
+
+      return this;
+   }
+
+
    public RegistrationPage verifyResult(String key, String value) {
       resultsModal.verifyResult(key, value);
 
       return this;
+
    }
 }
