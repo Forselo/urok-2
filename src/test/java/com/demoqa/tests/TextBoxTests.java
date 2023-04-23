@@ -6,15 +6,15 @@ public class TextBoxTests extends TestBase {
     @Test
     void successfulFillFormTest() {
         textBoxPage.openPage()
-                .setFullName("Mr Smith")
+                .setFullName("Seva Petrov")
                 .setEmail("fors333@a.ru")
-                .setCurrentAddress("Some street 1")
-                .setPermanentAddress("Another street 1")
+                .setCurrentAddress("Kazan")
+                .setPermanentAddress("Anoxina")
                 .clickSubmit();
 
-        textBoxPage.verifyOutputName("Mr Smith")
-                .verifyOutputEmail("aa@aaa.com")
-                .verifyOutputCurrentAddress("Some street 1")
-                .verifyOutputPermanentAddress("Another street 1");
+        textBoxPage.verifyOutputName("Seva Petrov")
+                .verifyOutputEmail("fors333@a.ru")
+                .verifyOutputCurrentAddress("Kazan")
+                .verifyOutputPermanentAddress("Anoxina");
     }
 }
