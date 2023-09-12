@@ -1,11 +1,12 @@
 package com.demoqa;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import com.codeborne.selenide.Configuration;
-import java.io.File;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static org.openqa.selenium.Keys.CONTROL;
+
 public class PracticeForm {
     @BeforeAll
     static void beforeAll(){
@@ -25,22 +26,32 @@ public class PracticeForm {
         $("#userEmail").setValue("aaa@a.com");
         $("#gender-radio-1").parent().click();
         $("#userNumber").setValue("7986957850");
-        $("#dateOfBirthInput").sendKeys(CONTROL + "A");
-        $("#dateOfBirthInput").sendKeys("11.11.1991");
-        $("#dateOfBirthInput").pressEnter();
+        $("#dateOfBirthInput").click();
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption("February");
+        $(".react-datepicker__year-select").selectOption("1991");
+        $(".react-datepicker__day--001").click();
         $("#subjectsInput").setValue("Arts");
         $("#subjectsInput").pressEnter();
-        $("#hobbies-checkbox-1").parent().click();
-        $("#hobbies-checkbox-2").parent().click();
-        $("#hobbies-checkbox-3").parent().click();
-        $("#uploadPicture").uploadFile(new File("src/test/resources/images/1.jpg"));
+        $(byText("Sports")).click();
+        $("#uploadPicture").uploadFromClasspath("panda.jpg");
         $("#currentAddress").setValue("Kazan");
         $("#state").click();
-        $("#react-select-3-option-2").click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
         $("#city").click();
-        $("#react-select-4-option-0").click();
+        $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
-        $(".table").shouldHave(text("Seva Ivanov"), text("aaa@a.com"), text("Male"), text("7986957850"),text("11 November,1991"), text("Arts"), text("Sports, Reading, Music"), text("1.jpg"), text("Kazan"), text("Haryana Karnal"));
+        $(".table").shouldHave(
+                text("Seva Ivanov"),
+                text("aaa@a.com"),
+                text("Male"),
+                text("7986957850"),
+                text("01 February,1991"),
+                text("Arts"),
+                text("Sports"),
+                text("panda.jpg"),
+                text("Kazan"),
+                text("NCR Delhi"));
 
     }
 
