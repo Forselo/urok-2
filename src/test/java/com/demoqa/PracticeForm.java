@@ -1,12 +1,22 @@
 package com.demoqa;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import com.codeborne.selenide.Configuration;
 import java.io.File;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.Keys.CONTROL;
-public class PracticeForm extends TestBase {
+public class PracticeForm {
+    @BeforeAll
+    static void beforeAll(){
+        Configuration.holdBrowserOpen = false;
+        Configuration.browserSize = "1920x1080";
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.pageLoadStrategy="eager";
+    }
+
     @Test
-    void succesfulFullFormTest() {
+    void demoQaTest() {
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
@@ -30,8 +40,7 @@ public class PracticeForm extends TestBase {
         $("#city").click();
         $("#react-select-4-option-0").click();
         $("#submit").click();
-        $(".table").shouldHave(text("Seva Ivanov"), text("aaa@a.com"), text("Male"), text("7986957850"),
-                text("11 November,1991"), text("Arts"), text("Sports, Reading, Music"), text("1.jpg"), text("Kazan"), text("Haryana Karnal"));
+        $(".table").shouldHave(text("Seva Ivanov"), text("aaa@a.com"), text("Male"), text("7986957850"),text("11 November,1991"), text("Arts"), text("Sports, Reading, Music"), text("1.jpg"), text("Kazan"), text("Haryana Karnal"));
 
     }
 
